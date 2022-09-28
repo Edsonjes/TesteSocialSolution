@@ -1,0 +1,52 @@
+﻿@using Domain.Entityes
+@model IEnumerable<Imovel>
+
+@{
+    ViewData["Title"] = "Imoveis";
+}
+
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">Endereco</th>
+                <th scope="col">Tipo Imovel</th>
+                <th scope="col">Situacão</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Logradouro</td>
+                    <td>@item.IdTipoImovel</td>
+                    <td>@item.Situacao</td>
+                    <td></td>
+                   
+                    <td>
+                        <div class="float-lg-right">
+                            <a href="@Url.RouteUrl("EditarImovel", new { Id = item.Id })" class="btn btn-secondary">
+                                <span class="text">Editar</span>
+                            </a>
+
+                           
+                      
+                      </div>     
+                    </td>
+
+                     
+
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+</div>

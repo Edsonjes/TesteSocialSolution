@@ -1,0 +1,159 @@
+@using Domain.Entityes;
+@model Imovel;
+
+
+@{
+    ViewData["Title"] = "Cadastra Imoveis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Cadastro Imovel
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Cadastrar", "Imovel", FormMethod.Post))
+        {
+           
+            <input type="hidden" asp-for="IdCliente" />
+            <div class="mb-3">
+                <label class="form-label">Cep</label>
+                <input type="text" class="form-control" asp-for="Cep" id="cep"  onblur="pesquisacep(this.value);" placeholder="Cep">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Rua</label>
+                <input type="text" class="form-control" asp-for="Logradouro" id="rua" placeholder="Rua">
+            </div>
+             <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <input type="text" class="form-control" asp-for="Cidade" id="cidade" placeholder="Estado">
+            </div>
+               <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <input type="text" class="form-control" asp-for="Uf" id="uf" placeholder="Estado">
+            </div>
+
+               <div class="mb-3">
+                <label class="form-label">Bairro</label>
+                <input type="text" class="form-control" asp-for="Localidade" id="bairro" placeholder="Bairro">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Complemento</label>
+                <input type="text" class="form-control" asp-for="Complemento"  placeholder="Complemento">
+            </div>
+             <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <input type="text" class="form-control" asp-for="Descricao" />
+            </div>
+
+            
+
+            <div class="mb-3">
+                <label class="form-label">Tipo Imovel</label>
+                
+                 @Html.DropDownListFor(Model => Model.IdTipoImovel, ((IEnumerable<TipoImovel>)ViewBag.TipoImovel).Select(option => new SelectListItem
+                    {
+                    Value = Convert.ToString(option.Id),
+                    Text = option.Nome,
+
+
+                    }), "Selecione uma Opção", new { @class = "form-control form-control-user" })
+
+            </div>
+
+             <div class="mb-3">
+                <label class="form-label">Valor Imovel</label>
+                <input type="text" class="form-control" asp-for="ValorImovel" placeholder="ValorImovel">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Situacao Imovel</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Situacao" value="A" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Ativo
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Situacao" value="I">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Inativo
+                </label>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary font-weight-bold">Salvar</button>
+            </div>
+        }
+    </div>
+</div>
+<script >
+     function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+           
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+            
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+                
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+</script>

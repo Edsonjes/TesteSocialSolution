@@ -1,0 +1,88 @@
+﻿@using Domain.Entityes
+@model IEnumerable<Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+@using (Html.BeginForm("filterCliente", "Cliente", FormMethod.Get))
+{
+    <div style="width: 400px;">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-3 small" name="Cpf_Cnpj" id="Cpf_Cnpj" placeholder="Cpf/Cnpj">
+
+        </div>
+        <div class="float-lg-right">
+        <button class="btn btn-primary" type="submit">
+            
+        </button>
+        </div>
+    </div>
+
+
+
+
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top:40px;">
+    <h1 class="h3 mb-2 text-gray-800">Clientes</h1>
+    <a href="@Url.RouteUrl("CadastrarCliente")" class="btn btn-secondary">
+
+        <span class="text">Cadastrar</span>
+    </a>
+
+</div>
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">Nome</th>
+                <th scope="col">Cpf/Cnpj</th>
+                <th scope="col">Situacão</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Nome</td>
+                    <td>@item.Cpf_CnpJ</td>
+                    <td>@item.Situacao</td>
+                    <td></td>
+
+                    <td>
+                        <div class="float-lg-right">
+                            <a href="@Url.RouteUrl("EditarCliente", new { Id = item.Id })" class="btn btn-secondary">
+                                <span class="text">Editar</span>
+                            </a>
+                            @{
+                                if (item.Situacao == "A")
+                                {
+                                    <a href="@Url.RouteUrl("CadastroImovel", new { IdCliente = item.Id })" class="btn btn-info">
+                                        <span class="text">Cadastar Imovel</span>
+                                    </a>
+
+                                    <a href="@Url.RouteUrl("MeusImoveis", new { IdCliente = item.Id })" class="btn btn-warning">
+                                        <span class="text">Meus Imovel</span>
+                                    </a>
+                                }
+                            }
+
+                        </div>
+                    </td>
+
+
+
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+</div>

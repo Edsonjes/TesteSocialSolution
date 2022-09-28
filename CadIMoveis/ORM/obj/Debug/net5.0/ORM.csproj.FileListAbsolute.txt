@@ -1,0 +1,15 @@
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\bin\Debug\net5.0\ORM.deps.json
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\bin\Debug\net5.0\ORM.dll
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\bin\Debug\net5.0\ORM.pdb
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\bin\Debug\net5.0\Domain.dll
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\bin\Debug\net5.0\Domain.pdb
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.csproj.AssemblyReference.cache
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.GeneratedMSBuildEditorConfig.editorconfig
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.AssemblyInfoInputs.cache
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.AssemblyInfo.cs
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.csproj.CoreCompileInputs.cache
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.csproj.CopyComplete
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.dll
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\refint\ORM.dll
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ORM.pdb
+D:\App\Projetos\TesteDevSocialSolition\CadIMoveis\ORM\obj\Debug\net5.0\ref\ORM.dll

@@ -1,0 +1,44 @@
+﻿@using Domain.Entityes
+@model Cliente
+@{
+    ViewData["Title"] = "Cadastra Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Cadastro Cliente
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Cadastrar", "Cliente", FormMethod.Post))
+        {
+
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control" asp-for="Nome" placeholder="Nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cpf/Cnpj</label>
+                <input type="text" class="form-control" asp-for="Cpf_CnpJ" placeholder="Cpf/Cnpj">
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Situacao" value="A" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Ativo
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Situacao" value="I">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Inativo
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary font-weight-bold">Salvar</button>
+            </div>
+        }
+    </div>
+</div>
+
